@@ -140,7 +140,7 @@ header h1{
   float: right;
   width: 179px;
   height: 124px;
-  background: url(../images/webapp_cometa_sprite.png) -382px -140px;
+  background: url(../images/webapp_cometa_sprite.png) -404px -140px;
   text-indent: -9999em;
   margin: 12px 51px 0 0;
 }
@@ -609,7 +609,6 @@ footer .seguro{
     form label{font-size: 14px;}
 }
 @media(max-width:537px){
-    .banner{height: 90px; margin-top: 0;}
      .banner #cometa{ margin-top:33px; }
     .banner #bus{margin-top: 10px;}
     form input[type=submit]{font-size: 21px; margin-top: 5px;}
