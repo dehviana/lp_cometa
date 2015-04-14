@@ -86,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <button id="dataamanha" type="button" class="btn_hjmn btn_amanha">Amanhã</button>  
 
         </div><!-- Volta -->
-          
+           <div id="pikadayinner"></div>
          <button type="submit" id="frmBus" class="cometa" value="Buscar Passagens" >Buscar Passagens</button>
          
     </form> 
@@ -108,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script type="text/javascript" src="/assets/javaScript/jquery.min.js"></script>
   <script type="text/javascript" src="/assets/javaScript/typeahead.bundle.min.js"></script>
   <script type="text/javascript" src="/assets/javaScript/moment.min.js"></script>
-  <script type="text/javascript" src="/assets/javaScript/pikaday.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/pikaday_relative.js"></script>
   <script type="text/javascript" src="/assets/javaScript/clickbuswebapp.min.js"></script>
 
 
@@ -143,6 +143,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           field: eleGroup[x],
                           format: 'DD/MM/YYYY',
                           minDate: moment().toDate(),
+                          bound: false,
+                          container: document.getElementById('pikadayinner'),
                           i18n: {
                           previousMonth : 'Previous Month',
                           nextMonth     : 'Next Month',
@@ -271,7 +273,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         Clickbus.init();
 
 
-        jQuery(document).ready(function () {
+       jQuery(document).ready(function () {
 
                 
 
@@ -279,24 +281,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     jQuery(this).addClass("ativo").siblings().removeClass('ativo');
                     jQuery('#departureDate').val('');
                     jQuery('#departureDate').val(jQuery('#departureDate').val() + moment().format('DD/MM/YYYY'));
-                    
+                    jQuery("#pikadayinner").css("display","none")
                 });
 
                 jQuery('#dataamanha').click(function() {
                     jQuery(this).addClass("ativo").siblings().removeClass('ativo');
                     jQuery('#departureDate').val('');
                     jQuery('#departureDate').val(jQuery('#departureDate').val() + moment().add('d', 1).format('DD/MM/YYYY'));
-                   
+                    jQuery("#pikadayinner").css("display","none")
                 });
 
                 jQuery('#departureDate').on('focus', function() {
                     jQuery('#datahoje').removeClass('ativo');
                     jQuery('#dataamanha').removeClass('ativo');
-                  
+                    jQuery("#pikadayinner").css("display","block")
                     
                 });
 
-               
+               jQuery('div#pikadayinner').on('click', '.pika-button', function() {
+                    jQuery("#pikadayinner").css("display","none")
+                    return false;
+                });
 
           });
 </script>
