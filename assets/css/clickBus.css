@@ -391,16 +391,32 @@ form .volta .btn_hjmn.ativo {
   margin: 20px 0;
 }
 
+.meio ul.ClickBus_rodoviarias {
+  list-style-type:disc;
+
+}
+
 .meio ul.ClickBus_rodoviarias li {
   display:block;
   list-style: disc;
-  list-style-position: inside;
   font-size: 12px;
 }
 
 .wrapper.meio p {
    text-align: left;
   font-size: 15px;
+}
+
+.ClickBus_fone {
+  color: #fff;
+  padding: 10px;
+  background: #000;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.ClickBus_fone:active, .ClickBus_fone:hover, {
+ text-decoration: underline;
 }
 
 /************************ FOOTER **************************************/
