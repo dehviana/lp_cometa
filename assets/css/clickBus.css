@@ -109,7 +109,16 @@ header h1{
 .itapemirim{
      background-color: #feee00;
 }
+.passagem {
+  background-color: #ffde6b;
+}
+.passagem-btn {
+  background-color: #00b3dc;
+}
 
+.preto-txt {
+  color:#000 !important;
+}
 
 .Clickbus_logo {
   float: left;
@@ -189,6 +198,7 @@ header h1{
     width:100%;
     display: block;
     height: 150px;
+    position: relative;
 }
 .banner #cometa{
     float: left;
@@ -459,6 +469,56 @@ footer .seguro{
 .cometa{
      background-color: #0068de;
 }
+
+
+
+.land h2 {
+  font-size: 19px;
+  font-family: 'robotoLight';
+  color: #282828;
+  text-align: left;
+  margin-bottom: 25px;
+  margin-top: 12px;
+  float:left;
+  width: 100%
+}
+
+.Clickbus_banner_land {
+  float: left;
+  width: 167px;
+  height: 64px;
+  background: url(../images/passagemdeonibus/circulo.svg);
+  background-size: 100%;
+  background-position: 50% 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 21px;
+  padding: 13px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 14px;
+}
+
+.land ul  {
+  float: left;
+  width: 100%;
+  margin-bottom:20px;
+}
+
+.land ul li {
+  display: inline
+}
+
+.land ul li a {
+  width: 31%;
+  margin: 0 0 8px 5px;
+  float: left;
+}
+
+.land ul li a img {
+  width: 100%;
+}
 /************************  QUERIES  *****************************/
 @media(max-width:1184px){
  #cometa{width: 35%; }
@@ -545,7 +605,7 @@ footer .seguro{
   margin: 5px 0 0 20px;
 }
     header #logo{width: 120px; height: 36px; margin-top: 6px;}
-    header h1{ padding-right: 20px; font-size: 17px; margin: 12px 0 0 0; padding-top: 10px; }
+    header h1{ padding-right: 20px; font-size: 16px; margin: 12px 0 0 0; padding-top: 10px; }
     form label{font-size: 14px;}
 }
 @media(max-width:537px){
@@ -568,6 +628,11 @@ footer .seguro{
   text-indent: -9999em;
   margin: 3px 0 0 6px;
 }
+
+.Clickbus_logo.preto {
+  background: url(../images/webapp_cometa_sprite.png) -274px -201px;
+}
+
 
 .Clickbus_cometa {
   float: left;

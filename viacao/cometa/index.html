@@ -27,7 +27,7 @@ valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
 
     <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/normalize.min.css">
     <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/pikaday.min.css">
-    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/clickBus.min.css">
+    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/clickBus.css">
 
 </head>
 <body>
@@ -50,7 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <h1>Viação Cometa</h1> 
    </header>
     <div class="banner">
-        <img src="/assets/images/cometa.jpg" alt="Viação Cometa" width="124" height="29" class="Clickbus_cometa">
+        <img src="/assets/images/viacao-cometa.jpg" alt="Viação Cometa" width="124" height="29" class="Clickbus_cometa">
         <img src="/assets/images/webapp_sprite_bus2.jpg" alt="Passagem de Ônibus" width="110" height="79" class="Clickbus_bus">
     </div> <!-- Banner -->
     <form class="wrapper" id="bannerForm" >
@@ -245,6 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         $('#originPlace, #destinationPlace').typeahead({
                           hint: true,
                           highlight: true,
+                          autoselect: true,
                           minLength: 2
                         },
                         {

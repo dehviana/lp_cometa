@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Viação Nacional Expresso - Passagem de Ônibus | Clickbus</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Viação Nacional Expresso - Passagens de onibus em até 12X no cartão. &#10004;Maior site de vendas de Passagem de ônibus do Brasil. &#10004;Pagamento facilitado e online &#10004;Clickbus">
+    <link rel="canonical" href="http://www.clickbus.com.br/pt/nacional-expresso">
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/normalize.min.css">
+    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/pikaday.min.css">
+    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/clickBus.min.css">
+
+</head>
+<body>
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P9ZB8T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P9ZB8T');</script>
+<!-- End Google Tag Manager -->
+
+   <header class="nacional-expresso">
+      <div class="Clickbus_logo">ClickBus</div>
+      <h1>Viação Nacional Expresso</h1>
+   </header>
+    <div class="banner">
+        <img src="/assets/images/viacao-nacional-expresso.jpg" alt="Viação Nacional Expresso" width="124" height="29" class="Clickbus_cometa">
+        <div class="Clickbus_bus">ClickBus</div>
+    </div> <!-- Banner -->
+    <form class="wrapper" id="bannerForm" >
+        <h2>Encontre sua <strong>passagem de ônibus!</strong></h2>
+        <label for="originPlace">
+            <span class="Clickbus_pointer"></span>Origem
+            <span class="error"></span>
+        </label>
+        
+        <input type="text"  id="originPlace" placeholder="Informe sua origem" onkeyup="retirarAcento(this)" >
+        <input id="originPlaceSlug" type="hidden" >
+       
+
+        <label for="destinationPlace">
+            <span class="Clickbus_pointer"></span>Destino
+            <span class="error"></span>
+        </label>
+        
+        <input type="text" id="destinationPlace" placeholder="Informe seu destino" onkeyup="retirarAcento(this)" >
+        <input id="destinationPlaceSlug" type="hidden" >
+       
+
+        <div class="ida">
+            <label for="departureDate">
+                <span class="Clickbus_cal"></span>Data
+                <span class="error"></span>
+            </label>
+            <input class="datepicker" id="departureDate" type="text" placeholder="Data de ida" readonly="readonly">
+        </div><!-- Ida -->
+
+        <div class="volta">
+            <button id="datahoje" type="button" class="btn_hjmn btn_hoje">Hoje</button>
+            <button id="dataamanha" type="button" class="btn_hjmn btn_amanha">Amanhã</button>
+
+        </div><!-- Volta -->
+          <div id="pikadayinner"></div>
+         <button type="submit" id="frmBus" class="nacional-expresso"value="Buscar Passagens" >Buscar Passagens</button>
+         
+    </form>
+   
+
+    <footer class="wrapper foot">
+        <div class="footerLogo">
+            <div class="Clickbus_Logofot"></div>
+        </div> <!-- footer logo -->
+        <div class="seguro">
+            <div class="poseguro">
+                <div class="Clickbus_Lock"></div>
+                <h3>Site Seguro</h3>
+            </div>
+        </div> <!-- seguro -->
+    </footer>
+     
+  <script type="text/javascript" src="/assets/javaScript/jquery.min.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/typeahead.bundle.min.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/pikaday.min.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/clickbuswebapp.min.js"></script>
+
+  <script type="text/javascript">
+
+      function retirarAcento(objResp) {
+          var varString = new String(objResp.value);
+          var stringAcentos = new String('àâêôûãõáéíóúçüÀÂÊÔÛÃÕÁÉÍÓÚÇÜ');
+          var stringSemAcento = new String('aaeouaoaeioucuAAEOUAOAEIOUCU');
+          var i = new Number(); var j = new Number(); var cString = new String(); var varRes = '';
+          for (i = 0; i < varString.length; i++) { cString = varString.substring(i, i + 1);
+          for (j = 0; j < stringAcentos.length; j++) {
+              if (stringAcentos.substring(j, j + 1) == cString){
+                  cString = stringSemAcento.substring(j, j + 1);
+              }
+          } varRes += cString; } objResp.value = varRes;
+      
+      }
+        (function(window){
+            document.getElementById('bannerForm').addEventListener('submit', formSubmit);
+            function formSubmit(e){
+                e.preventDefault();
+                window.Clickbus.handlerSubmit(this);
+        };
+
+        
+
+         var eleGroup = document.querySelectorAll('.datepicker');
+                for(x in eleGroup) {
+                    if(eleGroup.hasOwnProperty(x)) {
+                        new Pikaday({
+                          field: eleGroup[x],
+format:                           'DD/MM/YYYY',
+                          minDate: moment().toDate(),
+                          bound: false,
+                          container: document.getElementById('pikadayinner'),
+                          i18n: {
+previousMonth:                            'Previous Month',
+nextMonth:                                'Next Month',
+                          months        :['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro', 'Outubro','Novembro','Dezembro'],
+                          weekdays      : ['Domingo','Segunda','Ter&ccedil;a','Quarta','Quinta','Sexta','S&aacute;bado','Domingo'],
+weekdaysShort:                            ['Dom','Seg','Ter','Qua','Qui','Sex','Sab','Dom']
+                          }});
+                              }
+                }
+                
+
+
+            window.Clickbus = {
+                routes : [],
+                labels : [],
+                init : function(){
+                  
+                    jQuery('#frmBus').submit(function(e){
+                        e.preventDefault();
+                        Clickbus.handlerSubmit(this);
+                      
+                    });
+                    Clickbus.loadRoutes();
+                    Array.prototype.contains = function(element){
+                        return this.indexOf(element) > -1;
+                    };
+                },
+                loadRoutes : function(){
+                    jQuery.ajax({
+                        type: "GET",
+                        url: "/assets/javaScript/rotas.js",
+                        //url: "/assets/javaScript/rotas.js",
+                        dataType: "script"
+                    });
+                },
+                isValidDate : function(date){
+                    var matches = /^(\d{2})[-\/](\d{2})[-\/](\d{4})$/.exec(date);
+                    if (matches == null) return false;
+                    var d = parseInt(matches[1]);
+                    var m = parseInt(matches[2]);
+                    var y = parseInt(matches[3]);
+                    var composedDate = new Date(y+'/'+m+'/'+d);
+                    var realMonth = parseInt(composedDate.getMonth())+1;
+                    return composedDate.getDate() == d &&
+                            realMonth == m &&
+                            composedDate.getFullYear() == y;
+                },
+                handlerSubmit : function(o){
+                    var oSlug = jQuery.trim(o.originPlaceSlug.value),
+                        dSlug = jQuery.trim(o.destinationPlaceSlug.value),
+                        dDep = jQuery.trim(o.departureDate.value).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/),
+                        strRet = '',
+                        error = false;
+                        jQuery('.error',o).html('');
+                        
+                        if(!Clickbus.labels.contains(o.originPlace.value)){
+                            error = true;
+                            jQuery('label[for=originPlace] .error',o).html('Origem inexistente');
+                           
+                        }
+                        if(!Clickbus.labels.contains(o.destinationPlace.value)){
+                            error = true;
+                            jQuery('label[for=destinationPlace] .error',o).html('Destino inexistente');
+                           
+                        }
+                        
+                        if(!Clickbus.isValidDate(o.departureDate.value)){
+                            error = true;
+                            jQuery('label[for=departureDate] .error',o).html('Data inv&aacute;lida');
+                        }
+                    
+                    if(oSlug!=='' && dSlug!=='' && dDep !== null && !error){
+                       var url = 'https://m.clickbus.com.br/#/search/results/brazil/'+oSlug+'/'+dSlug+'/'+dDep[3]+'-'+dDep[2]+'-'+dDep[1];
+                        /*var url = 'http://passagens.transportal.com.br/pt/busca/'+oSlug+'/'+dSlug+'/?ida='+dDep[3]+'-'+dDep[2]+'-'+dDep[1]+strRet;*/
+                        window.location.href = url;
+                    }
+                },
+                callback : function(data){
+                    Clickbus.routes = data;
+                    if(Clickbus.routes.length > 0){
+
+
+                        var substringMatcher = function(strs) {
+                          return function findMatches(q, cb) {
+                            var matches, substrRegex;
+                            matches = [];
+                            substrRegex = new RegExp(q, 'i');
+                            $.each(strs, function(i, str) {
+                              if (substrRegex.test(str.label)) {
+                                  matches.push({ value: str.label, slug: str.slug });
+                              }
+                            });
+                            cb(matches);
+                          };
+                        };
+
+
+                        $('#originPlace, #destinationPlace').typeahead({
+                          hint: true,
+                          highlight: true,
+                          minLength: 2
+                        },
+                        {
+name:                           'states',
+displayKey:                           'value',
+source:                           substringMatcher (Clickbus.routes)
+                        });
+
+                        $('#originPlace').bind('typeahead:selected', function(obj, data) {
+                            $('#originPlaceSlug').val(data.slug);
+                        });
+
+                        $('#destinationPlace').bind('typeahead:selected', function(obj, data) {
+                            $('#destinationPlaceSlug').val(data.slug);
+                        });
+                                
+                       
+                        for(i in data){
+                            Clickbus.labels.push(data[i].label);
+                        }
+                    }
+                }
+            };
+        
+        })(window);
+        Clickbus.init();
+
+
+        jQuery(document).ready(function () {
+
+                
+
+                jQuery('#datahoje').click(function() {
+                    jQuery(this).addClass("ativo").siblings().removeClass('ativo');
+                    jQuery('#departureDate').val('');
+                    jQuery('#departureDate').val(jQuery('#departureDate').val() + moment().format('DD/MM/YYYY'));
+                    jQuery("#pikadayinner").css("display","none")
+                });
+
+                jQuery('#dataamanha').click(function() {
+                    jQuery(this).addClass("ativo").siblings().removeClass('ativo');
+                    jQuery('#departureDate').val('');
+                    jQuery('#departureDate').val(jQuery('#departureDate').val() + moment().add('d', 1).format('DD/MM/YYYY'));
+                    jQuery("#pikadayinner").css("display","none")
+                });
+
+                jQuery('#departureDate').on('focus', function() {
+                    jQuery('#datahoje').removeClass('ativo');
+                    jQuery('#dataamanha').removeClass('ativo');
+                    jQuery("#pikadayinner").css("display","block")
+                    
+                });
+
+               jQuery('div#pikadayinner').on('click', '.pika-button', function() {
+                    jQuery("#pikadayinner").css("display","none")
+                    return false;
+                });
+
+          });
+</script>
+
+  <script type="text/javascript">
+    dataLayer.push({
+      'busLine': 'nacional-expresso',
+      'event': 'busline'
+    });
+</script>
+
+</body>
+</html>
