@@ -321,14 +321,22 @@ form .volta .btn_hjmn.ativo {
 }
 
 .tt-suggestion {
-  background: #f0f0f0;
-  padding: 6px 0;
+  background: #f0f0f0 url(../images/auto_seta.png) no-repeat 96% 50%;
+  padding: 10px 0;
   border-top: 1px solid #ddd;
   text-align: left;
-  text-indent: 4px;
+  text-indent: 10px;
   float:left;
   width: 100%;
 }
+
+.tt-suggestion:active {
+  background: #000;
+  color:#fff;
+}
+
+
+
 
 #pikadayinner {
   float: left;
@@ -428,6 +436,10 @@ form .volta .btn_hjmn.ativo {
 .ClickBus_fone:active, .ClickBus_fone:hover, {
  text-decoration: underline;
 }
+
+
+
+
 
 /************************ FOOTER **************************************/
 footer{
@@ -605,7 +617,7 @@ footer .seguro{
   margin: 5px 0 0 20px;
 }
     header #logo{width: 120px; height: 36px; margin-top: 6px;}
-    header h1{ padding-right: 20px; font-size: 16px; margin: 12px 0 0 0; padding-top: 10px; }
+    header h1{ padding-right: 20px; font-size: 14px; margin: 12px 0 0 0; padding-top: 10px; }
     form label{font-size: 14px;}
 }
 @media(max-width:537px){

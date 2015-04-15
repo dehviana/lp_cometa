@@ -12,12 +12,33 @@
     <link rel="canonical" href="http://www.clickbus.com.br/pt/viacao-cometa">
     <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
-    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/normalize.min.css">
-    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/pikaday.min.css">
-    <link rel="stylesheet" rel="stylesheet" media="screen" href="/assets/css/clickBus.min.css">
+    <link rel="stylesheet" media="screen" href="/assets/css/normalize.min.css">
+    <link rel="stylesheet" media="screen" href="/assets/css/clickBus.css">
+    <link rel="stylesheet" media="screen" href="/assets/css/pickadate/default.css">
+    <link rel="stylesheet" media="screen" href="/assets/css/pickadate/default.date.css">
 
+    <!--[if lt IE 9]>
+    <script>document.createElement('section')</script>
+    <style type="text/css">
+        .holder {
+            position: relative;
+            z-index: 10000;
+        }
+        .datepicker {
+            display: block;
+        }
+    </style>
+<![endif]-->
+ <script type="text/javascript">
+  function PreLoad(){
+  var jas = new Array();
+  jas[0].src='/assets/javaScript/rotas.js';
+  }
+</script>
+
+   
 </head>
-<body>
+<body onload="javascript:preLoad();">
 
 
 <!-- Google Tag Manager -->
@@ -65,7 +86,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <span class="Clickbus_cal"></span>Data
                 <span class="error"></span>
             </label>
-            <input class="datepicker" id="departureDate" type="text" name="Data" placeholder="Data de ida" readonly="readonly">       
+            <input class="datepicker" id="departureDate" type="text" name="Data" placeholder="Data de ida" autofocuss>   
+            
+            <div id="containerdate"></div>             
         </div><!-- Ida -->
 
         <div class="volta">
@@ -95,12 +118,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script type="text/javascript" src="/assets/javaScript/jquery.min.js"></script>
   <script type="text/javascript" src="/assets/javaScript/typeahead.bundle.min.js"></script>
   <script type="text/javascript" src="/assets/javaScript/moment.min.js"></script>
-  <script type="text/javascript" src="/assets/javaScript/pikaday.js"></script>
-  <script type="text/javascript" src="/assets/javaScript/clickbuswebapp.min.js"></script>
+   <script type="text/javascript" src="/assets/javaScript/clickbuswebapp.min.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/pickadate/picker.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/pickadate/picker.date.js"></script>
+  <script type="text/javascript" src="/assets/javaScript/pickadate/legacy.js"></script>
 
 
   <script type="text/javascript">
 
+
+
+
+      
+  
       function retirarAcento(objResp) {
           var varString = new String(objResp.value); 
           var stringAcentos = new String('àâêôûãõáéíóúçüÀÂÊÔÛÃÕÁÉÍÓÚÇÜ'); 
@@ -121,25 +151,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 window.Clickbus.handlerSubmit(this);
         };
 
-        
+          var $input = $( '.datepicker' ).pickadate({
+            format: 'd/mm/yyyy',
+            formatSubmit: 'd/m/yyyy',
+            min: true,
+            container: '#containerdate',
+            //editable: true,
+            closeOnSelect: true,
+            closeOnClear: true,
+            monthsFull: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro', 'Outubro','Novembro','Dezembro'],
+            weekdaysShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+            today: '',
+            clear: '',
+            close: ''
+        })
 
-         var eleGroup = document.querySelectorAll('.datepicker');
-                for(x in eleGroup) {
-                    if(eleGroup.hasOwnProperty(x)) {
-                        new Pikaday({ 
-                          field: eleGroup[x],
-                          format: 'DD/MM/YYYY',
-                          minDate: moment().toDate(),
-                          i18n: {
-                          previousMonth : 'Previous Month',
-                          nextMonth     : 'Next Month',
-                          months        :['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro', 'Outubro','Novembro','Dezembro'],
-                          weekdays      : ['Domingo','Segunda','Ter&ccedil;a','Quarta','Quinta','Sexta','S&aacute;bado','Domingo'],
-                          weekdaysShort : ['Dom','Seg','Ter','Qua','Qui','Sex','Sab','Dom']
-                          }});
-                              }
-                }
-                
+        var picker = $input.pickadate('picker')
 
 
             window.Clickbus = {
@@ -257,10 +284,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         })(window);
         Clickbus.init();
 
-
-        jQuery(document).ready(function () {
-
-                
+        jQuery( document ).ready(function() {
 
                 jQuery('#datahoje').click(function() {
                     jQuery(this).addClass("ativo").siblings().removeClass('ativo');
@@ -279,11 +303,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 jQuery('#departureDate').on('focus', function() {
                     jQuery('#datahoje').removeClass('ativo');
                     jQuery('#dataamanha').removeClass('ativo');
-                  
+                });
+
+                jQuery('#originPlace').blur(function() {
+                  if( !jQuery(this).val() ) {
+                      error = true;
+                      jQuery('label[for=originPlace] .error').html('Origem inexistente');
+                    }
+
+                });
+
+                jQuery('#originPlace').on('focus', function() {
+                     jQuery('label[for=originPlace] .error').html('');
+                    
+                });
+                
+                jQuery('#destinationPlace').blur(function() {
+                  if( !jQuery(this).val() ) {
+                      error = true;
+                      jQuery('label[for=destinationPlace] .error').html('Destino inexistente');
+                    }
+                });
+
+                jQuery('#destinationPlace').on('focus', function() {
+                     jQuery('label[for=destinationPlace] .error').html('');
                     
                 });
 
-               
 
           });
 </script>
